@@ -1,5 +1,10 @@
 <script lang="ts">
-  let open = false;
+  import { useLocalStorageCartItems } from '$lib/spells/use-local-storage-cart-items.svelte';
+
+  let open = $state(false);
+
+  const cartItems = useLocalStorageCartItems();
+  const hasCartItems = $derived(!!cartItems.items?.length);
 </script>
 
 {#snippet logo()}
@@ -25,8 +30,11 @@
       </li>
     </div>
 
-    <li>
+    <li class="relative">
       <a href="/cart">Carrinho</a>
+      {#if hasCartItems}
+        <div class="size-3 bg-red-500 rounded-full absolute top-0 -right-3"></div>
+      {/if}
     </li>
 
     <li class="block md:hidden">
