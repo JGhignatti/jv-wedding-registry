@@ -19,11 +19,15 @@
 
 {#snippet listNavItem({ link, name })}
   <li>
-    <a href={link} class="w-full p-2 rounded bg-pink-50 block text-center">{name}</a>
+    <a
+      href={link}
+      class="w-full p-2 rounded bg-pink-50 block text-center"
+      onclick={() => (open = false)}>{name}</a
+    >
   </li>
 {/snippet}
 
-<div class="container mx-auto p-4 space-y-6">
+<nav class="container mx-auto p-4 space-y-6">
   <ul class="flex items-center gap-2">
     <li class="mr-auto">
       {@render inlineNavItem({ link: '/', name: 'Início', classes: 'hidden md:block' })}
@@ -43,7 +47,7 @@
     </div>
 
     <li class="relative">
-      <a href="/cart" class="px-4 py-2 bg-pink-100 border-2 border-pink-400 rounded">Carrinho</a>
+      <a href="/cart" class="px-4 py-2 bg-pink-50 border-2 border-pink-400 rounded">Carrinho</a>
       {#if hasCartItems}
         <div
           class="size-4 bg-red-500 rounded-full absolute -top-4 -right-2 border-2 border-white box-content"
@@ -52,7 +56,7 @@
     </li>
 
     <li class="flex items-center md:hidden">
-      <button class="size-8" onclick={() => (open = true)}>
+      <button class="size-8 rounded" onclick={() => (open = true)}>
         <MdMenu />
       </button>
     </li>
@@ -61,14 +65,14 @@
   <div class="hidden md:block">
     {@render logo()}
   </div>
-</div>
+</nav>
 
 <div
-  class="fixed w-dvw h-dvh inset-y-0 flex-col flex p-4 bg-white transition-all md:hidden"
+  class="fixed w-dvw h-dvh inset-y-0 flex-col flex p-4 bg-white transition-all duration-300 md:hidden"
   class:left-full={!open}
   class:left-0={open}
 >
-  <button class="self-end size-8" onclick={() => (open = false)}>
+  <button class="self-end size-8 rounded" onclick={() => (open = false)}>
     <MdClose />
   </button>
 
